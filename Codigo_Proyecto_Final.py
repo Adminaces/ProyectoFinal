@@ -1,24 +1,17 @@
-#Codigo Proyecto Final 
+#Código Proyecto Final --- 12 de Julio de 2023
+
+#Integrantes
+
+# Jose Miguel Caicedo Ortiz - 202225784 (Programador)
+
+# Manuel Alejandro Almendra Ipia - 202229089 (Proveedor de Información)
+
+# Catalina Henao Roa - 202226604 (Redactora)
+
+# Camilo - 2022 (Ensamblador)
+
 #AdminAces
 
-#!/usr/bin/env python
-#
-# GrovePi Project for a Weather Station project.
-#   *   Reads the data from light, temperature and humidity sensor 
-#       and takes pictures from the Pi camera periodically and logs them
-#       coming soon:  reading atmospheric pressure(BMP180)
-#   *   Sensor Connections on the GrovePi:
-#           -> Grove light sensor                       - Port A2
-#           -> Grove Temperature and Humidity sensor    - Port D4
-#           -> Raspberry Pi Camera
-#           -> Grove Pressure sensor (BMP 180)          - Any I2C port, I2C-1, I2C-2, or I2C-3.
-
-#
-# NOTES:
-#   *   Make sure that the Pi camera is enabled and working. You can see detailed directions here: https://www.raspberrypi.org/help/camera-module-setup/
-#   *   The GrovePi connects the Raspberry Pi and Grove sensors.  You can learn more about GrovePi here:  http://www.dexterindustries.com/GrovePi
-#   *   Have a question about this example?  Ask on the forums here:  http://forum.dexterindustries.com/c/grovepi
-#
 '''
 ## License
 
@@ -47,103 +40,75 @@ THE SOFTWARE.
 '''
 
 #################################################################
+#Se importan las librerias necesarias para controlar los módulos del proyecto
 import time
 import grovepi
 import subprocess
-import math
 from grove_rgb_lcd import *
-from datetime import datetime
-# import picamera
 from grove_i2c_barometic_sensor_BMP180 import BMP085
-#################################################################
-## File Location
-
-log_file="/home/pi/Desktop/weather_station_log.csv"     # This is the name of the file we will save data to.
-                                                        # This is hard coded to the Desktop.
 
 #################################################################
-  
-def truncate(number:float, max_decimals:int) -> float:
-    int_part, dec_part = str(number).split(".")
-    return float(".".join((int_part,dec_part[:max_decimals])))
-  
-                                                        
-                                                        
-## Sensors
-light_sensor            = 0    #Light Sensor Port Number
-temp_humidity_sensor    = 4     #Temperature sensor Port Number
+## Se inicializa un archivo que guardara los datos separados por comas
 
-#potencimeter
-potenciometer = 2
+archivo="/home/pi/Desktop/Datos_Guardados.csv"     # Se guardara en el escritorio de la Raspberry Pi
 
-blue=0
-therm_version = blue            
-# setting the backlight color once reduces the amount of data transfer over the I2C line
+#################################################################
+                                         
+## Pines de los sensores 
+light_sensor            = 0     #Sensor de Luminosidad
+temp_humidity_sensor    = 4     #Sensor de Humedad-Temperatura
+
+#Pin de la resistencia variable
+potenciometer = 2 #Se usa una resistencia variable para determinar el tiempo de muestreo en el programa   
+
+#Se inicializa la luz de fondo del display en blanco
 setRGB(255,255,255)
 
-
-#################################################################
-# Timings
-# You can adjust the frequency of the operations here:  how frequently the sensors are read,
-# how frequently the data is written to csv, and how frequently pictures are taken.
-
-resp = 0  
-
-
-
-# Timings
-#################################################################
-
-
-#Read the data from the sensors.
-def read_sensor():
-    try:
-        
-
-        light=grovepi.analogRead(light_sensor)
-        [temp,humidity] = grovepi.dht(temp_humidity_sensor,therm_version)   # Here we're using the thermometer version.
-        #Return -1 in case of bad temp/humidity sensor reading
-        if math.isnan(temp) or math.isnan(humidity):        #temp/humidity sensor sometimes gives nan
-            return [-1,-1,-1,-1]
-            #return [-1,-1,-1]
-        return [light,temp,humidity]
-        #return [light,temp,humidity]
+#Función para guardar los datos en el archivo CSV
+def guardar_datos() :
+     try:
+           # Guardamos el tiempo y los datos de los sensores el el archivo CSV
+            print("Guardando datos...")
+            f=open(archivo,'a')
+            f.write("%s,%.2f,%.2f,%d;\n" %(str(fecha_actual),light,temp,humidity))
+            f.close() 
+            return 0
+     except (IOError,TypeError) as e:
+        return 0
     
-    #Return -1 in case of sensor error
+#Función usada para leer los datos de los sensores
+def leer_sensor():
+    try:
+        light=grovepi.analogRead(light_sensor)
+        [temp,humidity] = grovepi.dht(temp_humidity_sensor,0)
+        return [light,temp,humidity]
     except (IOError,TypeError) as e:
-            # return [-1,-1,-1]
+            #En caso de un error
             return [-1,-1,-1,-1]
 
-
-
-#Save the initial time, we will use this to find out when it is time to take a picture or save a reading
-last_read_sensor= int(time.time())
-
-# Main Loop
+# Main
 while True:
+    #Ajustamos la escala del potencimetro para el tiempo de muestreo
     resp = (grovepi.analogRead(potenciometer)//255.75)+ 1
-    tiempo_actual = datetime.now()
+    #Obtiene la fecha actual de ejecución del programa
+    fecha_actual = time.strftime("%Y-%m-%d:%H-%M-%S")
+    #Obtiene el tiempo de ejecución del programa
     current_time = int(time.time())
-    [light,temp,humidity]=read_sensor()
+    #Lee los datos de los sensores
+    [light,temp,humidity]=leer_sensor()
+    #Escala el valor del sensor de luz
     light //= 80
-    # If any reading is a bad reading, skip the loop and try again
-    if light==-1:
-        print("Bad reading")
-        time.sleep(1)
-        continue
-    curr_time = time.strftime("%Y-%m-%d:%H-%M-%S")
-    print(("Time:%s\nLight: %d\nTemp: %.2fC\nHumidity: %d \n" %(tiempo_actual,light,temp,humidity)))
+    #Muestra en la consola la fecha de ejecucion y los datos de los sensores
+    print(("Time:%s\nLight: %d\nTemp: %.2fC\nHumidity: %d \n" %(fecha_actual,light,temp,humidity)))
 
-    # If it is time to take the sensor reading
+    # Ajustamos el tiempo en que se guardan las lecturas segun el potencimetro
     if current_time-last_read_sensor>resp:
-        # Save the sensor reading to the CSV file
-        print("Save the sensor reading to the CSV file.")
-        f=open(log_file,'a')
-        f.write("%s,%.2f,%.2f,%d;\n" %(str(tiempo_actual),light,temp,humidity))
-        f.close()
-        
-        #Update the last read time
+        guardar_datos()
+        #Reinicia el tiempo de espera
         last_read_sensor=current_time
-    setText_norefresh("T:" + str(truncate(temp,0)) + "c  L:" + str(light)+"lm  H:" + str(truncate(humidity,0)) +"% Ts:"+str(truncate(resp,0)))
-
+        
+    #Actualizamos los datos del LCD    
+    setText_norefresh("T:" + str(temp) + "c  L:" + str(light)+"lm  H:" + str(humidity) +"% Ts:"+str(resp,0))
+    
+    #Delay de 1 segundo
     time.sleep(1)
