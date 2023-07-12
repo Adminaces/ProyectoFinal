@@ -1,4 +1,4 @@
-#Código Proyecto Final --- 12 de Julio de 2023
+#Código Proyecto Final V2--- 12 de Julio de 2023
 
 #Integrantes
 
@@ -86,10 +86,23 @@ def leer_sensor():
             #En caso de un error
             return [-1,-1,-1,-1]
 
+def escalar_sensorluz(luz):
+    try:
+        luz = luz//80
+        return luz
+    except (IOError,TypeError) as e:
+        
+        return
+def tiempo_muestreo(pot):
+    try:
+        res= (grovepi.analogRead(pot)//255.75)+ 1
+        return res
+    except (IOError,TypeError) as e:
+        return -1
 # Main
 while True:
     #Ajustamos la escala del potencimetro para el tiempo de muestreo
-    resp = (grovepi.analogRead(potenciometer)//255.75)+ 1
+    resp = tiempo_muestreo(potenciometer)
     #Obtiene la fecha actual de ejecución del programa
     fecha_actual = time.strftime("%Y-%m-%d:%H-%M-%S")
     #Obtiene el tiempo de ejecución del programa
@@ -97,18 +110,19 @@ while True:
     #Lee los datos de los sensores
     [light,temp,humidity]=leer_sensor()
     #Escala el valor del sensor de luz
-    light //= 80
+    light =escalar_sensorluz(light)
     #Muestra en la consola la fecha de ejecucion y los datos de los sensores
     print(("Time:%s\nLight: %d\nTemp: %.2fC\nHumidity: %d \n" %(fecha_actual,light,temp,humidity)))
 
     # Ajustamos el tiempo en que se guardan las lecturas segun el potencimetro
     if current_time-last_read_sensor>resp:
+        
         guardar_datos()
         #Reinicia el tiempo de espera
         last_read_sensor=current_time
         
     #Actualizamos los datos del LCD    
-    setText_norefresh("T:" + str(temp) + "c  L:" + str(light)+"lm  H:" + str(humidity) +"% Ts:"+str(resp,0))
+    setText_norefresh("T:" + str(temp) + "c  L:" + str(light)+"lm  H:" + str(humidity) +"% Ts:"+str(resp))
     
     #Delay de 1 segundo
     time.sleep(1)
