@@ -67,7 +67,6 @@ potenciometer = 2 #Se usa una resistencia variable para determinar el tiempo de 
 #Se inicializa la luz de fondo del display en blanco
 setRGB(255,255,255)
 
-=======
 
 #Pin de la resistencia variable
 potenciometer = 2 #Se usa una resistencia variable para determinar el tiempo de muestreo en el programa   
@@ -115,7 +114,6 @@ def tiempo_muestreo(pot):
 while True:
     #Ajustamos la escala del potencimetro para el tiempo de muestreo
     resp = tiempo_muestreo(potenciometer)
-=======
 # Main
 while True:
     #Ajustamos la escala del potencimetro para el tiempo de muestreo
@@ -144,7 +142,6 @@ while True:
     #Actualizamos los datos del LCD    
 
     setText_norefresh("T:" + str(temp) + "c  L:" + str(light)+"lm  H:" + str(humidity) +"% Ts:"+str(resp))
-=======
 
     
     #Delay de 1 segundo
