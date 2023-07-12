@@ -1,4 +1,6 @@
+
 #Código Proyecto Final V3--- 12 de Julio de 2023
+
 
 #Integrantes
 
@@ -58,6 +60,15 @@ archivo="/home/pi/Desktop/Datos_Guardados.csv"     # Se guardara en el escritori
 light_sensor            = 0     #Sensor de Luminosidad
 temp_humidity_sensor    = 4     #Sensor de Humedad-Temperatura
 
+
+#Pin de la resistencia variable
+potenciometer = 2 #Se usa una resistencia variable para determinar el tiempo de muestreo en el programa   
+
+#Se inicializa la luz de fondo del display en blanco
+setRGB(255,255,255)
+
+=======
+
 #Pin de la resistencia variable
 potenciometer = 2 #Se usa una resistencia variable para determinar el tiempo de muestreo en el programa   
 
@@ -86,6 +97,7 @@ def leer_sensor():
             #En caso de un error
             return [-1,-1,-1,-1]
 
+
 def escalar_sensorluz(luz):
     try:
         luz = luz//80
@@ -103,6 +115,12 @@ def tiempo_muestreo(pot):
 while True:
     #Ajustamos la escala del potencimetro para el tiempo de muestreo
     resp = tiempo_muestreo(potenciometer)
+=======
+# Main
+while True:
+    #Ajustamos la escala del potencimetro para el tiempo de muestreo
+    resp = (grovepi.analogRead(potenciometer)//255.75)+ 1
+
     #Obtiene la fecha actual de ejecución del programa
     fecha_actual = time.strftime("%Y-%m-%d:%H-%M-%S")
     #Obtiene el tiempo de ejecución del programa
@@ -110,19 +128,24 @@ while True:
     #Lee los datos de los sensores
     [light,temp,humidity]=leer_sensor()
     #Escala el valor del sensor de luz
+
     light =escalar_sensorluz(light)
+
     #Muestra en la consola la fecha de ejecucion y los datos de los sensores
     print(("Time:%s\nLight: %d\nTemp: %.2fC\nHumidity: %d \n" %(fecha_actual,light,temp,humidity)))
 
     # Ajustamos el tiempo en que se guardan las lecturas segun el potencimetro
     if current_time-last_read_sensor>resp:
-        
+
         guardar_datos()
         #Reinicia el tiempo de espera
         last_read_sensor=current_time
         
     #Actualizamos los datos del LCD    
+
     setText_norefresh("T:" + str(temp) + "c  L:" + str(light)+"lm  H:" + str(humidity) +"% Ts:"+str(resp))
+=======
+
     
     #Delay de 1 segundo
     time.sleep(1)
