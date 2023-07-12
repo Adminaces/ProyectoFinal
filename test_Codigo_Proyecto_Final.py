@@ -1,0 +1,3 @@
+import pytest
+from Codigo_Proyecto_Final import escalar_sensorluz
+from Codigo_Proyecto_Final import escalar_sensorluz
