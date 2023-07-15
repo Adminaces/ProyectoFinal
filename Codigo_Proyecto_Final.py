@@ -58,6 +58,8 @@ archivo="/home/pi/Desktop/Datos_Guardados.csv"     # Se guardara en el escritori
 light_sensor            = 0     #Sensor de Luminosidad
 temp_humidity_sensor    = 4     #Sensor de Humedad-Temperatura
 
+
+
 #Pin de la resistencia variable
 potenciometer = 2 #Se usa una resistencia variable para determinar el tiempo de muestreo en el programa   
 
