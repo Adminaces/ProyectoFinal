@@ -61,6 +61,8 @@ Light_Data = []
 Hum_Data = []
 Temp_Data = []
 
+
+
 #Pin de la resistencia variable
 #potenciometer = 2 #Se usa una resistencia variable para determinar el tiempo de muestreo en el programa   
 
