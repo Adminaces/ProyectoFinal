@@ -11,7 +11,7 @@
 
 Al principio del curso se socializo la idea de crear un proyecto para examinar el desempeño de los estudiantes en las diferentes capacidades desarrollando software y el uso de nuevas plataformas como por ejemplo Raspberry Pi y su entorno de desarrollo integrado Thonny Python, el proyecto trataba en crear una estación climatológica que sea capaz de tomar distintos datos del entorno como temperatura, intensidad luminica y humedad, esto mediante sensores los cuales tienen que ser programados por los paquetes del kit Grove-Pi
 
-Además de documentar el proyecto mediante el uso de un repositorio Github y cronometrar la realización de las diferentes actividades que se ven involucradas en el proyecto.
+Además de documentar el proyecto mediante el uso de un repositorio Github y cronometrar en JIRA la realización de las diferentes actividades que se ven involucradas en el proyecto.
 
 ### Materiales y módulos usados
 
@@ -22,3 +22,9 @@ Además de documentar el proyecto mediante el uso de un repositorio Github y cro
 - Raspberry Pi 3B
 - Shield Grove Pi
 - Conexiones Grove pi
+### Participantes
+- Jose Miguel Caicedo Ortiz
+- Manuel Alejandro Almendra Ipia
+- Catalina Henao Roa
+- Camilo 
+## Link al proyecto JIRA
