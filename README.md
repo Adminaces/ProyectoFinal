@@ -5,7 +5,7 @@
 ![Miembros del Equipo](https://img.shields.io/badge/Miembros-4-blue)
 ![Número de Commits](https://img.shields.io/badge/Commits-15-crimson)
 
-# En este repositorio el grupo Adminaces desarrollo el programa para sensar los datos de una estación climatologica por medio de Raspberry Pi y Python.
+ En este repositorio el grupo Adminaces desarrollo el programa para sensar los datos de una estación climatológica por medio de Raspberry Pi y Python.
 
 ### Descripción del proyecto
 
