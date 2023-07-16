@@ -13,7 +13,7 @@ def test3_escalarluz():
     
 def test1_tiempo_muestreo():
     assert tiempo_muestreo(1023) == 5
-def test1_tiempo_muestreo():
+def test2_tiempo_muestreo():
     assert tiempo_muestreo(1023) == 5
 
 def test1_leer_sensor():
@@ -22,3 +22,9 @@ def test1_leer_sensor():
 #def test3_leer_sensor():    
 if __name__ == '_main_':
     #Ejecutamos pruebas
+    test1_escalarluz()
+    test1_leer_sensor()
+    test1_tiempo_muestreo()
+    test2_tiempo_muestreo()
+    test2_escalarluz()
+    test3_escalarluz()
