@@ -2,7 +2,7 @@
 
 ![Estación Climatológica alusiva](https://github.com/Adminaces/ProyectoFinal/blob/main/Complementos/Estaci%C3%B3n-Climatol%C3%B3gica.webp)
 
-![Miembros del Equipo](https://img.shields.io/badge/Miembros-4-blue)
+![UNIVALLE](https://img.shields.io/badge/Universidad%20del%20Valle%20-%20red)
 ![Número de Commits](https://img.shields.io/badge/Commits-15-crimson)
 
  En este repositorio el grupo Adminaces desarrollo el programa para sensar los datos de una estación climatológica por medio de Raspberry Pi y Python.
