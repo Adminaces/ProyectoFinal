@@ -26,6 +26,6 @@ Además de documentar el proyecto mediante el uso de un repositorio Github y cro
 - Jose Miguel Caicedo Ortiz
 - Manuel Alejandro Almendra Ipia
 - Catalina Henao Roa
-- Camilo 
+- Camilo Rios
 ## Link al proyecto JIRA
 https://jmcaicedo17.atlassian.net/jira/software/projects/ESTMTR/boards/4
