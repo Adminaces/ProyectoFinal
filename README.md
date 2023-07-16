@@ -1,46 +1,24 @@
-# Python-project-Scripts.
+# Proyecto final ADMINACES - MDS - Estación Climatológica.
 
-<a href="https://join.slack.com/t/ngc-goz8665/shared_invite/zt-r01kumfq-dQUT3c95BxEP_fnk4yJFfQ">
-<img alt="Join us on Slack" src="https://raw.githubusercontent.com/netlify/netlify-cms/master/website/static/img/slack.png" width="165"/>
-</a>
+![Estación Climatológica alusiva](https://github.com/Adminaces/ProyectoFinal/blob/main/Complementos/Estaci%C3%B3n-Climatol%C3%B3gica.webp)
 
-![Contributors](https://img.shields.io/github/contributors/larymak/Python-project-Scripts?style=plastic)
-![Forks](https://img.shields.io/github/forks/larymak/Python-project-Scripts)
-![Stars](https://img.shields.io/github/stars/larymak/Python-project-Scripts)
-![Licence](https://img.shields.io/github/license/larymak/Python-project-Scripts)
-![Issues](https://img.shields.io/github/issues/larymak/Python-project-Scripts)
+![Miembros del Equipo](https://img.shields.io/badge/Miembros-4-blue)
+![Número de Commits](https://img.shields.io/badge/Commits-15-crimson)
 
-## This is a list of Python scripts for beginner projects.
+## En este repositorio el grupo Adminaces desarrollo el programa para sensar los datos de una estación climatologica por medio de Raspberry Pi y Python.
 
-### Description
+### Descripción del proyecto
 
-Welcome aboard fellow developer, this is where you will find Python scripts which you are free to contribute to.
-You can contribute by submitting your own scripts, also written in Python, which you think would be amazing for other
-people to see.
+Al principio del curso se socializo la idea de crear un proyecto para examinar el desempeño de los estudiantes en las diferentes capacidades desarrollando software y el uso de nuevas plataformas como por ejemplo Raspberry Pi y su entorno de desarrollo integrado Thonny Python, el proyecto trataba en crear una estación climatológica que sea capaz de tomar distintos datos del entorno como temperatura, intensidad luminica y humedad, esto mediante sensores los cuales tienen que ser programados por los paquetes del kit Grove-Pi
 
-### Contribution Guidelines
+Además de documentar el proyecto mediante el uso de un repositorio Github y cronometrar la realización de las diferentes actividades que se ven involucradas en el proyecto.
 
-The contribution guidelines are as per the
-guide [HERE](https://github.com/larymak/Python-project-Scripts/blob/main/CONTRIBUTING.md).
+### Materiales y módulos usados
 
-### Instructions
-
-- Fork this repository
-- Clone your forked repository
-- Add your scripts
-- Commit and push
-- Create a pull request
-- Star this repository
-- Wait for pull request to merge
-- Celebrate your first step into the open source world and contribute more
-
-## Additional tools to help you get Started with Open-Source Contribution
-
-- [How to Contribute to Open Source Projects – A Beginner's Guide](https://www.freecodecamp.org/news/how-to-contribute-to-open-source-projects-beginners-guide/)
-- [How to Write a Good README File for Your GitHub Project](https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/)
-
----
-
-#### Note: When you add a project, add it to the README for ease of finding it.
-
-#### Note: Please do not have the project link reference your local forked repository. Always link it to this repository after it has been merged with main.
+- Módulo Grove Pi LCD RGB 16x2
+- Resistencia variable Grove Pi(Potenciometro)
+- Fotoresistencia Grove Pi
+- Sensor de Temperatura y Humedad DHT11
+- Raspberry Pi 3B
+- Shield Grove Pi
+- Conexiones Grove pi
