@@ -68,7 +68,8 @@ Temp_Data = []
 
 #Variable para el tiempo de respuesta
 resp = 0
-
+#Variable para guardar el tiempo previo
+last_read_sensor = 0
 #Función para guardar los datos en el archivo CSV
 def guardar_datos() :
      try:
@@ -105,22 +106,22 @@ def escalar_sensorluz(luz):
         return luz
     except (IOError,TypeError) as e:
         return -1
-def tiempo_muestreo():
+def tiempo_muestreo(res):
     try:
         #res= (potencimeter//255.75)+ 1
-        res = input('Ingrese el tiempo de muestreo')
+        res = int(input('Ingrese el tiempo de muestreo'))
         return res
     except (IOError,TypeError) as e:
         return -1
 # Main
 while True:
-    #Ajustamos la escala del potencimetro para el tiempo de muestreo
-    if  current_time-last_read_sensor < resp:
-        resp = tiempo_muestreo()
     #Obtiene la fecha actual de ejecución del programa
     fecha_actual = time.strftime("%Y-%m-%d:%H-%M-%S")
     #Obtiene el tiempo de ejecución del programa
     current_time = int(time.time())
+    #Ajustamos la escala del potencimetro para el tiempo de muestreo
+    if  current_time-last_read_sensor < resp:
+        resp = tiempo_muestreo()
     #Lee los datos de los sensores
     [light,temp,humidity]=leer_sensor()
     #Escala el valor del sensor de luz
@@ -141,6 +142,6 @@ while True:
     #Actualizamos los datos del LCD    
     #setText_norefresh("T:" + str(temp) + "c  L:" + str(light)+"lm  H:" + str(humidity) +"% Ts:"+str(resp))
     
-    #Delay de 1 segundo
-    time.sleep(1)
+    #Delay de 10 segundo
+    time.sleep(10)
     

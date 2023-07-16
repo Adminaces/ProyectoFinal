@@ -1,30 +1,30 @@
 import pytest
-from Codigo_Proyecto_Final import escalar_sensorluz, leer_sensor
+from Codigo_Proyecto_Final import escalar_sensorluz
 from Codigo_Proyecto_Final import tiempo_muestreo
 
 #Pruebas Unitarias
 
 def test1_escalarluz():
-    assert escalar_sensorluz(80,24,35) == [80,24,35]
+    assert escalar_sensorluz(800) == 10
 def test2_escalarluz():
-    assert escalar_sensorluz(65.493,39.444,70.455) == [80,24,35]
+    assert escalar_sensorluz(310.968) == 7
 def test3_escalarluz():
-    assert escalar_sensorluz(-1,4024040,-40182.1441) == [-1,-1,-1]
+    assert escalar_sensorluz(500.4993) == 6
     
 def test1_tiempo_muestreo():
-    assert tiempo_muestreo(1023) == 5
+    assert tiempo_muestreo("60") == 60
 def test2_tiempo_muestreo():
-    assert tiempo_muestreo(1023) == 5
+    assert tiempo_muestreo("600.25") == 600
+def test3_tiempo_muestreo():
+    assert tiempo_muestreo("45.25") == 45
 
-def test1_leer_sensor():
-    assert leer_sensor(25, 15)==[25,15] 
 #def test2_leer_sensor():
 #def test3_leer_sensor():    
 if __name__ == '_main_':
     #Ejecutamos pruebas
     test1_escalarluz()
-    test1_leer_sensor()
-    test1_tiempo_muestreo()
-    test2_tiempo_muestreo()
     test2_escalarluz()
     test3_escalarluz()
+    test1_tiempo_muestreo()
+    test2_tiempo_muestreo() 
+    test3_tiempo_muestreo()
