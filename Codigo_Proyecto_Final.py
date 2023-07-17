@@ -91,9 +91,9 @@ def guardar_datos() :
         with open('Datos_Guardados.csv', 'w', newline='') as csvf:
             escritor = csv.writer(csvf) 
             escritor.writerow(Fecha)
-            escritor.writerow(Light_Data)
-            escritor.writerow(Temp_Data)
-            escritor.writerows(Hum_Data)
+            escritor.writerow(str(Light_Data))
+            escritor.writerow(str(Temp_Data))
+            escritor.writerows(str(Hum_Data))
         return 0
      except (IOError,TypeError) as e:
         print("Error")
