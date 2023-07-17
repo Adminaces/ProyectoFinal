@@ -14,7 +14,7 @@ def test3_escalarluz():
 def test1_tiempo_muestreo():
     assert tiempo_muestreo("60") == 60
 def test2_tiempo_muestreo():
-    assert tiempo_muestreo("600.25") == 600
+    assert tiempo_muestreo("600.725") == 600
 def test3_tiempo_muestreo():
     assert tiempo_muestreo("45.25") == 45
 
