@@ -157,4 +157,3 @@ while True:
     
     #Delay de 1 segundos
     time.sleep(1)
-    
